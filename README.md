@@ -53,3 +53,17 @@ StatelessWidget là một cái thẻ có các thuộc tính bên trong liên qua
 Thực tế khi làm việc sẽ gặp các màn hình có các thuộc tính liên tục thay đổi, chúng ta sẽ làm thế nào. Chúng ta sẽ làm việc với StatefulWidget, thẻ có những thuộc tính có thể thay đổi được. Có giao diện thay đổi khi thuộc tính thay đổi.
 
 trong func createState() phải return về một đối tượng có kiểu là state. State là nơi chứa các thuộc tính mà các thuộc tính đó thay đổi. Cái widget thay đổi theo, giao diện thay đổi tương ứng.
+
+
+# tạo listView với độ dài tuỳ ý và thêm các sự kiện.
+Thẻ Scaffold có phần AppBar tức là phần header. Trong AppBar có thuộc tính title, title có một cái text
+Thuộc tính itemBuilder nó là một hàm, bên trong nó là một hàm. Dùng một cái hàm anounymous function có hai thuộc tính đầu vào là:
+                                        context là con trỏ trỏ đến vị trí hiện tại là dòng lệnh dang sử dụng.
+                                        index là chỉ số từng cái hàng một.
+final không thể gán cho một đối tượng khác được, chứ còn ở bên trong nó thì thêm hoặc bớt thành phần trong mảng thì ok.
+
+thuộc tính leading của listtitle thường hiểu như swift, trái phải đầu đuôi.
+
+thuộc tính onTap() khi tay bạn chạm vào.
+
+một Set là chứa tập hợp các phần tử không được trùng nhau.
