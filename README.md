@@ -67,3 +67,15 @@ thuộc tính leading của listtitle thường hiểu như swift, trái phải 
 thuộc tính onTap() khi tay bạn chạm vào.
 
 một Set là chứa tập hợp các phần tử không được trùng nhau.
+
+dấu _ trước tên func có ý nghĩa là func chỉ nên sử dụng trong class mà thôi.
+
+//To navigate, you must have a "route"
+để chuyển màn, tạo một object có kiểu dữ liệu là MaterialPageRoute.
+
+hàm map chuyển đổi từ một danh sách các đối tượng sang gồm có các string checkWords sang một cái
+danh sách các objects kiểu listTiles (do mình tự khai báo)
+sử dụng map khi muốn convert một mảng chứa các đối tượng kiểu A sang một mng3 chứa các đối tượng kiểu B
+//map function = Convert thist list to another list (maybe different object's type)
+
+lazy list chỉ được sử dụng khi mình gọi đến nó.
