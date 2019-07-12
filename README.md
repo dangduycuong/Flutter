@@ -15,15 +15,25 @@ present(vc, animated: true, completion: nil)
 
 #dart
 git clone -b beta https://github.com/flutter/flutter.git
+
 ls -la
+
 ls -la flutter
+
 echo $PATH
+
 pwd
+
 Admins-iMac-3:FlutterApp cuong$ export PATH=`pwd`/flutter/bin:$PATH
+
 Admins-iMac-3:FlutterApp cuong$ ls -la `pwd`/flutter/bin
+
 Admins-iMac-3:FlutterApp cuong$ flutter doctor #kiểm tra việc cài đặt đã hoàn thành chưa
+
 Admins-iMac-3:FlutterApp cuong$ flutter doctor --android-licenses #hiện các licenses agreement ra
+
 Admins-iMac-3:FlutterApp cuong$ flutter doctor
+
 
 #cài thêm hombrew, quản lý các pakages trong macOS
 #cài rồi thì update
@@ -79,3 +89,15 @@ sử dụng map khi muốn convert một mảng chứa các đối tượng ki�
 //map function = Convert thist list to another list (maybe different object's type)
 
 lazy list chỉ được sử dụng khi mình gọi đến nó.
+
+# Flutter layout
+thuộc tính fit: Boxit.cover
+co nhỏ ảnh nhất có thế.
+
+trong thẻ container có thể chứa nhiều cái khác.
+thẻ row: tất cả những thẻ nằm trong thẻ row này nó sẽ được bố trí theo hàng ngang.
+thẻ Expanded là thẻ mà phần tử bên trong của nó kể cả là dài hay ngắn thì nó cũng chứa phần không gian của 
+riêng nó. Tức là phần không gian của nó vẫn như vậy.
+thẻ CrossAxisAlignment bố trí. start, center, end (từ trái qua trung tâm qua phải)
+thuộc tính padding 4 chiều trên phải dưới trái 
+
