@@ -17,9 +17,15 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  int screenIndex = 0;
   @override
   Widget build(BuildContext context) {
     final selectedTab =
@@ -68,6 +74,7 @@ class _HomeTabButton extends StatelessWidget {
     return IconButton(
       onPressed: () => context.read<HomeBloc>().add(SelectTabEvent(index)),
       iconSize: 32,
+
       color: Theme.of(context).colorScheme.secondary,
       //context.read<HomeBloc>().selectedTab == 0
       //           ? Theme.of(context).colorScheme.onPrimary

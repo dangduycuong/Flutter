@@ -5,6 +5,12 @@ abstract class GithubSearchEvent extends Equatable {
   const GithubSearchEvent();
 }
 
+class GithubSearchFirstTimeEvent extends GithubSearchEvent {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
+
 class TextChanged extends GithubSearchEvent {
   const TextChanged({required this.text});
 
@@ -17,7 +23,6 @@ class TextChanged extends GithubSearchEvent {
   String toString() => 'TextChanged { text: $text }';
 }
 
-
 class GithubViewDetailEvent extends GithubSearchEvent {
   const GithubViewDetailEvent({required this.item});
 
@@ -29,4 +34,3 @@ class GithubViewDetailEvent extends GithubSearchEvent {
   @override
   String toString() => 'TextChanged { text: ${item.htmlUrl} }';
 }
-

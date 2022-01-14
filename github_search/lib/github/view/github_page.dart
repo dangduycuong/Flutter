@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_search/github/bloc/github_search_bloc.dart';
+import 'package:github_search/github/view/github_detail.dart';
 import 'package:github_search/github/view/search_body_github.dart';
 import 'package:github_search/github/view/searchbar_github.dart';
 
@@ -10,7 +11,7 @@ class GitHubPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GithubSearchBloc(),
+      create: (context) => GithubSearchBloc()..add(GithubSearchFirstTimeEvent()),
       child: BlocConsumer<GithubSearchBloc, GithubSearchState>(
         builder: (context, state) {
           return Scaffold(
@@ -18,7 +19,7 @@ class GitHubPage extends StatelessWidget {
               title: const Text('Github'),
             ),
             body: Column(
-              children: [
+              children: const [
                 SearchBar(),
                 SearchBody(),
               ],
@@ -26,8 +27,10 @@ class GitHubPage extends StatelessWidget {
           );
         },
         listener: (context, state) {
-          print('cdd ${state.toString()}');
-          //to do something
+          if (state is SearchStateViewDetail) {
+            Navigator.pushNamed(context, DetailGithub.routeName,
+                arguments: state.item);
+          }
         },
       ),
     );

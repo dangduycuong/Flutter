@@ -34,10 +34,10 @@ class SearchStateError extends GithubSearchState {
 }
 
 class SearchStateViewDetail extends GithubSearchState {
-  const SearchStateViewDetail(this.htmlUrl);
+  const SearchStateViewDetail(this.item);
 
-  final String htmlUrl;
+  final SearchResultItem item;
 
   @override
-  List<Object> get props => [htmlUrl];
+  List<Object> get props => [item];
 }

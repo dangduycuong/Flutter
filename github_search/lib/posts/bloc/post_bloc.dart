@@ -23,7 +23,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     );
   }
 
-  void _fetchPost(PostFetched event, Emitter<PostState> emit) async{
+  void _fetchPost(PostFetched event, Emitter<PostState> emit) async {
     var logger = Logger(
       printer: PrettyPrinter(),
     );
@@ -33,16 +33,15 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
     logger.i('full url');
 
-    try{
+    try {
       List<PostModel> posts = await client.getTasks(startIndex, _postLimit);
-      await Future.delayed(Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 500));
       if (posts.isEmpty) {
         emit(const PostLoadFullState([]));
       } else {
         emit(PostLoadSuccessState(posts));
       }
-    }catch(ex){
-      print('========== $ex');
+    } catch (ex) {
       emit(const PostLoadErrorState(null));
     }
 

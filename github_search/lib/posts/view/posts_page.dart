@@ -18,7 +18,9 @@ class PostsPage extends StatelessWidget {
           title: const Text('Posts'),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                context.read<PostBloc>().add(PostFetched());
+              },
               icon: const Icon(Icons.refresh),
             ),
           ],
@@ -71,7 +73,6 @@ class PostView extends StatelessWidget {
         }
 
         if (state is PostLoadSuccessState) {
-          logger.i(state.posts![0].body);
           return _buildListView(state.posts!);
         }
         if (state is PostLoadErrorState) {

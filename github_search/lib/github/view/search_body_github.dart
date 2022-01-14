@@ -1,8 +1,10 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_search/github/bloc/github_search_bloc.dart';
 import 'package:github_search/github/models/search_result_item.dart';
-import 'package:github_search/github/view/github_detail.dart';
 
 class SearchBody extends StatelessWidget {
   const SearchBody({Key? key}) : super(key: key);
@@ -11,12 +13,11 @@ class SearchBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GithubSearchBloc, GithubSearchState>(
       builder: (context, state) {
-        if (state is SearchStateViewDetail) {
-
-        }
         if (state is SearchStateLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Expanded(
+            child: (Platform.isIOS)
+                ? const Center(child: CupertinoActivityIndicator())
+                : const Center(child: CircularProgressIndicator()),
           );
         }
         if (state is SearchStateError) {
@@ -34,6 +35,13 @@ class SearchBody extends StatelessWidget {
               ? const Text('No Results')
               : Expanded(child: _SearchResults(items: state.items));
         }
+
+        if (state is SearchStateViewDetail) {
+          return Expanded(
+              child: _SearchResults(
+                  items: context.read<GithubSearchBloc>().repositories));
+        }
+
         return const Text('Please enter a term to begin');
       },
     );
@@ -52,8 +60,7 @@ class _SearchResults extends StatelessWidget {
       ),
       title: Text('fullName ${item.fullName}'),
       onTap: () async {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const DetailGithub()));
+        context.read<GithubSearchBloc>().add(GithubViewDetailEvent(item: item));
       },
     );
   }
