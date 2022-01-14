@@ -5,25 +5,25 @@ import 'package:github_search/posts/bloc/post_bloc.dart';
 import 'package:github_search/posts/models/post_model.dart';
 import 'package:logger/logger.dart';
 import 'dart:io';
+
 class PostsPage extends StatelessWidget {
   const PostsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Posts'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.refresh),
-          ),
-        ],
-      ),
-      body: BlocProvider(
-        // create: (_) => PostBloc()..add(PostFetched()),
-        child: const PostView(),
-        create: (_) => PostBloc()..add(PostFetched()),
+    return BlocProvider(
+      create: (_) => PostBloc()..add(PostFetched()),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Posts'),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.refresh),
+            ),
+          ],
+        ),
+        body: const PostView(),
       ),
     );
   }
@@ -34,7 +34,7 @@ var logger = Logger(
 );
 
 class PostView extends StatelessWidget {
-  Widget _builListView(List<PostModel> posts) {
+  Widget _buildListView(List<PostModel> posts) {
     return ListView.builder(
       itemCount: posts.length,
       itemBuilder: (context, index) => _buildCellForRowAt(posts[index], index),
@@ -54,30 +54,25 @@ class PostView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PostBloc, PostState>(
-      listener: (context, state){
-        if(state is PostLoadSuccessState){
-
-        }
+      listener: (context, state) {
+        if (state is PostLoadSuccessState) {}
         switch (state.runtimeType) {
           case PostStartLoadState:
             break;
-
         }
       },
       builder: (context, state) {
-        logger.i('what is state $state');
         if (state is PostStartLoadState) {
           // context.read<PostBloc>().add(PostFetched());
           if (Platform.isIOS) {
-            return Center(child: const CupertinoActivityIndicator());
+            return const Center(child: CupertinoActivityIndicator());
           }
-          return Center(child: const CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
 
         if (state is PostLoadSuccessState) {
-          logger.i('lay duoc gi day');
           logger.i(state.posts![0].body);
-          return _builListView(state.posts!);
+          return _buildListView(state.posts!);
         }
         if (state is PostLoadErrorState) {
           return Center(

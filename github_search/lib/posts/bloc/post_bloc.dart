@@ -39,7 +39,6 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       if (posts.isEmpty) {
         emit(const PostLoadFullState([]));
       } else {
-        logger.i('cai gi the nay ${posts[1].body}');
         emit(PostLoadSuccessState(posts));
       }
     }catch(ex){

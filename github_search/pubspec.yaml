@@ -44,6 +44,8 @@ dependencies:
   retrofit_generator: ^3.0.1+1
   json_annotation: ^4.4.0
   equatable: ^2.0.3
+  stream_transform: ^2.0.0
+  webview_flutter: ^3.0.0
 
 
 
